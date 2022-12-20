@@ -1,5 +1,7 @@
 import string
 import random
+import requests
+
 
 def by_letter_count(string):
     by_letter_count  = {}
@@ -26,8 +28,9 @@ class Game:
 
     def is_valid(self, word: str) -> bool:
 
+        result = requests.get(f'https://wagon-dictionary.herokuapp.com/{word}').json()
         tested_word_by_letter_count=   by_letter_count(word)
-        result = True
+        result = result["found"]
         for letter, count in tested_word_by_letter_count.items():
             result = result & self.by_letter_count.get(letter, 0) >= count
 
