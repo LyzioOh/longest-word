@@ -17,11 +17,13 @@ class Game:
         """Attribute a random grid to size 9"""
         grid = []
         for i in range(0,8) :
-            letter = random.choice(string.ascii_letters).lower()
+            letter = random.choice(string.ascii_letters)
             grid.append(letter)
         self.set_grid(grid)
 
     def set_grid(self, grid):
+        for index, letter in enumerate(grid):
+            grid[index] = letter.upper()
         self.grid = grid
         self.by_letter_count = by_letter_count(grid)
 
